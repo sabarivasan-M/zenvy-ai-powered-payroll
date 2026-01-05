@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENVY - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="glass-card login-box">
+            <h1 class="logo">ZENVY <span class="badge">AI</span></h1>
+            <p class="subtitle">Next Gen Payroll Platform</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Register Company</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required placeholder="hr@company.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="cta-btn">Access Dashboard</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form hidden">
+                <div class="input-group">
+                    <label>Company Name</label>
+                    <input type="text" id="regCompany" required placeholder="Acme Inc.">
+                </div>
+                <div class="input-group">
+                    <label>Admin Name</label>
+                    <input type="text" id="regName" required placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" required placeholder="admin@acme.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required placeholder="Create a strong password">
+                </div>
+                <button type="submit" class="cta-btn secondary">Start Free Trial</button>
+            </form>
+            
+            <p id="message" class="error-msg"></p>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

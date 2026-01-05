@@ -1,0 +1,27 @@
+const jwt = require('jsonwebtoken');
+
+const SECRET_KEY = process.env.JWT_SECRET || 'zenvy_super_secret_key_change_me';
+
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+    if (!token) return res.status(401).json({ error: 'Access denied. No token provided.' });
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).json({ error: 'Invalid token.' });
+        req.user = user; // user contains { id, company_id, role, email }
+        next();
+    });
+};
+
+const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ error: 'Access denied. Insufficient permissions.' });
+        }
+        next();
+    };
+};
+
+module.exports = { authenticateToken, authorizeRoles, SECRET_KEY };
